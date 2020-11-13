@@ -27,8 +27,15 @@ export default class Blank extends React.Component {
   state = {};
 
   render = () => (
-    <View style={styles.container}>
-      <Text>This is your new component</Text>
+    <View style={styles.itemsContainer}>
+                <Image
+                    style={{
+                    width: 365,
+                    height: 161,
+                }}
+                    resizeMode="contain"
+                    source={{uri: 'https://crowdbotics-slack-dev.herokuapp.com/'}}/>
+                <Text style={styles.heading}>{"Splash Screen Text"}</Text>
     </View>
   );
 }
