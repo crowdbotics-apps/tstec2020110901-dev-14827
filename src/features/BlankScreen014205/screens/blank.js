@@ -85,7 +85,7 @@ class App extends Component {
                     height: 161,
                 }}
                     resizeMode="contain"
-                    source={{uri: 'https://crowdbotics-slack-dev.herokuapp.com/'}}/>
+                    source={{uri: 'https://crowdbotics-slack-dev.s3.amazonaws.com/media/project_component_resources/LA_city_background.jpeg'}}/>
                 <Text style={styles.heading}>{"Splash Screen Text"}</Text>
       </View>
     );
