@@ -15,7 +15,7 @@ import {
 //import Slider from '@react-native-community/slider';
 //import { CheckBox } from 'react-native-elements';
 //import {SlideMenuIcon} from '../../../navigator/slideMenuIcon';
-import styles from './styles';
+import styles from '../styles';
 
 export default class Blank extends React.Component {
 //  static navigationOptions = ({navigation}) => {
