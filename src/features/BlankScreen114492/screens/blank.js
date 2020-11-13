@@ -1,34 +1,68 @@
-import React from "react";
-import {
-  View,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  Text,
-  Button,
-  Switch,
-  TextInput,
-  StyleSheet,
-} from "react-native";
-import DateTimePicker from 'react-native-datepicker';
+import React, {Component} from "react";
+import {StyleSheet, Image, ScrollView, TouchableOpacity, View} from "react-native";
+import {Text, Button} from "react-native-ui-kitten";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Slider from '@react-native-community/slider';
-import { CheckBox } from 'react-native-elements';
-import {SlideMenuIcon} from '../../../navigator/slideMenuIcon';
-import logo from '../../../assets/images/logo.png';
 
-export default class Blank extends React.Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      headerLeft: <SlideMenuIcon navigationProps={navigation} />,
+import LogoIcon from "../../assets/images/backgroundLoginV1.png";
+import {installed_blueprints} from "../../config/installed_blueprints";
+import {store} from "../../redux/store";
+import {styles} from '../styles';
+
+import {connect} from 'react-redux';
+
+class App extends Component {
+
+    static navigationOptions = {
+        title: 'Installed blueprints'
     };
-  };
-  
-  state = {};
 
-  render = () => (
-    <View style={styles.container}>
-                  <View style={styles.itemsContainer}>
+    componentDidMount() {
+        store.dispatch({type: 'TEST/ALO'});
+        const {navigation: {
+                navigate
+            }} = this.props;
+        if(this.props.accessToken){
+          navigate("MainApp")
+          //navigate("EmailAuth");
+        }
+
+            
+        setTimeout(() => {
+          if(!this.props.accessToken){
+            navigate("EmailAuth")
+          }
+        }, 3330)
+    }
+
+    renderItems() {
+        const {navigation: {
+                navigate
+            }} = this.props;
+
+        return installed_blueprints.map(item => {
+            if (item.hasOwnProperty('access_route')) {
+                return (
+                    <TouchableOpacity
+                        onPress={_ => navigate(item.access_route)}
+                        style={styles.item}
+                        key={`${item.name}--blueprint-button`}>
+                        <Icon
+                            style={styles.itemLogo}
+                            name={item.icon_name
+                            ? item.icon_name
+                            : 'pencil-square-o'}
+                            size={40}
+                            color="#F88087"/>
+                        <Text style={styles.itemFont}>{item.human_name}</Text>
+                    </TouchableOpacity>
+                );
+            }
+        });
+    }
+
+    render() {
+        return (
+            <View style={styles.itemsContainer}>
                 <Image
                     style={{
                     width: 365,
@@ -38,13 +72,13 @@ export default class Blank extends React.Component {
                     source={logo}/>
                 <Text style={styles.heading}>{"Splash Screen Text"}</Text>
             </View>
-    </View>
-  );
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginHorizontal: 16,
-  },
-});
+const mapStateToProps = state => ({accessToken: state.EmailAuth.accessToken});
+
+const mapDispatchToProps = dispatch => ({actions: {}});
+
+//export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
