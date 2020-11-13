@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import LogoIcon from "../../assets/images/backgroundLoginV1.png";
 import {installed_blueprints} from "../../config/installed_blueprints";
 import {store} from "../../redux/store";
-import {styles} from '../styles';
+import {styles} from './styles';
 
 import {connect} from 'react-redux';
 
