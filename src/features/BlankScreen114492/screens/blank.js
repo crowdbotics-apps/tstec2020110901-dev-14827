@@ -7,7 +7,7 @@ import LogoIcon from "../../assets/images/backgroundLoginV1.png";
 import {installed_blueprints} from "../../config/installed_blueprints";
 import {store} from "../../redux/store";
 import {styles} from './styles'
-import logo from "../../assets/icons/logo.png"
+//import logo from "../../assets/icons/logo.png"
 import {connect} from 'react-redux';
 
 class App extends Component {
@@ -69,15 +69,16 @@ class App extends Component {
                     height: 161,
                 }}
                     resizeMode="contain"
-                    source={logo}/>
+                    source={{uri: "https://crowdbotics-slack-dev.s3.amazonaws.com/media/project_component_resources/logo_mjuXl96.png"}}/>
                 <Text style={styles.heading}>{"IwantSMART.com Rebate\nManagement Program"}</Text>
             </View>
         );
     }
 }
 
-const mapStateToProps = state => ({accessToken: state.EmailAuth.accessToken});
+//const mapStateToProps = state => ({accessToken: state.EmailAuth.accessToken});
 
 const mapDispatchToProps = dispatch => ({actions: {}});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+//export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapDispatchToProps)(App);
